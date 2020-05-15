@@ -1,0 +1,26 @@
+name: 'AutoPR Production'
+description: 'Automatically opens and updates PRs to promote dev to prod'
+inputs:
+  repo-tokent:  # id of input
+    description: 'The GITHUB_TOKEN for the repo'
+    required: true
+  base-branch:
+    description: The branch to which PRs should be automatically opened
+    required: true
+  head-branch:
+    description: The branch from which merged PRs should be tracked
+    required: true
+  clubhouse-org:
+    description: The name of your organization in Clubhouse (if applicable)
+    required: false
+    default: false
+  max-commit-age:
+    description: Used in tandem with commit-age-units to specify how far back this should look for merges to capture in the AutoPR
+    required: false
+    default: 3
+  commit-age-units:
+    description: A time descriptor understood by momentjs, such as 'hours', 'days', 'weeks', 'months', 'years'.
+    default: 'months'
+runs:
+  using: 'node12'
+  main: 'index.js'
